@@ -7,6 +7,18 @@
 	
 	<!-- Root Context: defines shared resources visible to all other web components -->
 	
+	<bean id="hikariConfig" class="com.zaxxer.hikari.HikariConfig">
+		<property name="driverClassName" value="oracle.jdbc.driver.OracleDriver"></property>
+		<property name="jdbcUrl" value="jdbc:oracle:thin:@localhost:1523:XE"></property>
+		<property name="username" value="LEGACY"></property>
+		<property name="password" value="LEGACY"></property>
+	</bean>
+	
+	<!-- HikariCP -->
+	<bean id="dataSource" class="com.zaxxer.hikari.HikariDataSource" destroy-method="close">
+		<constructor-arg ref="hikariConfig" />
+	</bean>
+	
 	<context:component-scan base-package="sample">
 	</context:component-scan>
 		
